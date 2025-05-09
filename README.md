@@ -1,6 +1,4 @@
-# Gadfly Flutter Template
-
-This is for personal use, so I don't recommend using it. It is not documented and it is subject to change.
+# Innovation Flutter Template
 
 ## Setup
 
