@@ -19,6 +19,8 @@ dependencies:
   flutter_bloc: ^9.0.0
   forui: ^0.9.1+1
   forui_assets: ^0.9.1
+  google_sign_in: ^6.3.0
+  intersperse: ^2.0.0
   json_annotation: ^4.9.0
   logging: ^1.3.0
   mixpanel_flutter: ^2.3.3

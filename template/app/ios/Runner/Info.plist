@@ -45,6 +45,9 @@
 		<true />
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true />
+		<key>GIDClientID</key>
+		<!-- CHANGE_ME before going to production -->
+		<string>675316094808-d24rhbsag5mdgjnp0acpd6djag5h37sf.apps.googleusercontent.com</string>
 
 		<!-- Add this array for Deep Links -->
 		<key>CFBundleURLTypes</key>
@@ -56,6 +59,7 @@
 				<array>
 					<!-- CHANGE_ME before going to production -->
 					<string>com.gadfly361.gadflyfluttertemplate.deep</string>
+					<string>com.googleusercontent.apps.675316094808-d24rhbsag5mdgjnp0acpd6djag5h37sf</string>
 				</array>
 			</dict>
 		</array>
