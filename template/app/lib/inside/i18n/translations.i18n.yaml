@@ -57,6 +57,9 @@ signIn:
         empty: 'Please enter a password.'
     submit:
       label: 'Sign In'
+    socialSignIn:
+      title: 'Sign in with'
+  
 
 signUp:
   title: 'Sign Up'
@@ -74,6 +77,8 @@ signUp:
         invalid: 'Minimum 8 characters, upper and lower case, with at least one special character.'
     submit:
       label: 'Sign Up'
+    socialSignUp:
+      title: 'Sign up with'
   resendEmailVerification:
     question: 'Still need to verify you email?'
     action: 'Resend'

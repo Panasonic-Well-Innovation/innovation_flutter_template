@@ -17,9 +17,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
-	Translations({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
+	Translations({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver, TranslationMetadata<AppLocale, Translations>? meta})
 		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
-		  $meta = TranslationMetadata(
+		  $meta = meta ?? TranslationMetadata(
 		    locale: AppLocale.en,
 		    overrides: overrides ?? {},
 		    cardinalResolver: cardinalResolver,
@@ -35,6 +35,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	dynamic operator[](String key) => $meta.getTranslation(key);
 
 	late final Translations _root = this; // ignore: unused_field
+
+	Translations $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => Translations(meta: meta ?? this.$meta);
 
 	// Translations
 	late final TranslationsEmailVerificationLinkSentEn emailVerificationLinkSent = TranslationsEmailVerificationLinkSentEn._(_root);
@@ -191,6 +193,7 @@ class TranslationsSignInFormEn {
 	late final TranslationsSignInFormEmailEn email = TranslationsSignInFormEmailEn._(_root);
 	late final TranslationsSignInFormPasswordEn password = TranslationsSignInFormPasswordEn._(_root);
 	late final TranslationsSignInFormSubmitEn submit = TranslationsSignInFormSubmitEn._(_root);
+	late final TranslationsSignInFormSocialSignInEn socialSignIn = TranslationsSignInFormSocialSignInEn._(_root);
 }
 
 // Path: signUp.form
@@ -203,6 +206,7 @@ class TranslationsSignUpFormEn {
 	late final TranslationsSignUpFormEmailEn email = TranslationsSignUpFormEmailEn._(_root);
 	late final TranslationsSignUpFormPasswordEn password = TranslationsSignUpFormPasswordEn._(_root);
 	late final TranslationsSignUpFormSubmitEn submit = TranslationsSignUpFormSubmitEn._(_root);
+	late final TranslationsSignUpFormSocialSignUpEn socialSignUp = TranslationsSignUpFormSocialSignUpEn._(_root);
 }
 
 // Path: signUp.resendEmailVerification
@@ -294,6 +298,16 @@ class TranslationsSignInFormSubmitEn {
 	String get label => 'Sign In';
 }
 
+// Path: signIn.form.socialSignIn
+class TranslationsSignInFormSocialSignInEn {
+	TranslationsSignInFormSocialSignInEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Sign in with';
+}
+
 // Path: signUp.form.email
 class TranslationsSignUpFormEmailEn {
 	TranslationsSignUpFormEmailEn._(this._root);
@@ -325,6 +339,16 @@ class TranslationsSignUpFormSubmitEn {
 
 	// Translations
 	String get label => 'Sign Up';
+}
+
+// Path: signUp.form.socialSignUp
+class TranslationsSignUpFormSocialSignUpEn {
+	TranslationsSignUpFormSocialSignUpEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Sign up with';
 }
 
 // Path: signUp.resendEmailVerification.dialog
@@ -451,6 +475,7 @@ extension on Translations {
 			case 'signIn.form.password.label': return 'Password';
 			case 'signIn.form.password.error.empty': return 'Please enter a password.';
 			case 'signIn.form.submit.label': return 'Sign In';
+			case 'signIn.form.socialSignIn.title': return 'Sign in with';
 			case 'signUp.title': return 'Sign Up';
 			case 'signUp.form.email.label': return 'Email';
 			case 'signUp.form.email.hint': return 'john.doe@example.com';
@@ -460,6 +485,7 @@ extension on Translations {
 			case 'signUp.form.password.error.empty': return 'Please enter a password.';
 			case 'signUp.form.password.error.invalid': return 'Minimum 8 characters, upper and lower case, with at least one special character.';
 			case 'signUp.form.submit.label': return 'Sign Up';
+			case 'signUp.form.socialSignUp.title': return 'Sign up with';
 			case 'signUp.resendEmailVerification.question': return 'Still need to verify you email?';
 			case 'signUp.resendEmailVerification.action': return 'Resend';
 			case 'signUp.resendEmailVerification.dialog.title': return 'Email Verification Link';
