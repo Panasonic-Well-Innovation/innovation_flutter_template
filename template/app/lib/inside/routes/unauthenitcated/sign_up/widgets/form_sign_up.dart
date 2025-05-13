@@ -8,6 +8,7 @@ import '../../../../blocs/sign_up/events.dart';
 import 'button_submit.dart';
 import 'input_email.dart';
 import 'input_password.dart';
+import 'social_sign_up_column.dart';
 
 class SignUp_Form_SignUp extends StatefulWidget with SharedMixin_Logging {
   const SignUp_Form_SignUp({super.key});
@@ -84,6 +85,7 @@ class _SignUp_Form_SignUpState extends State<SignUp_Form_SignUp> {
           SignUp_Input_Password(controller: passwordController),
           SizedBox(height: context.tokens.spacing.medium),
           SignUp_Button_Submit(onSubmit: _onSubmit),
+          const SignUp_Column_SocialSignIn(),
           SizedBox(height: context.tokens.spacing.medium),
         ],
       ),

@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../app/configurations/configuration.dart';
 import '../../client_providers/sentry/client_provider.dart';
 import '../../effect_providers/mixpanel/effect_provider.dart';
 import '../base.dart';
@@ -7,15 +11,18 @@ import '../base.dart';
 class Auth_Repository extends Repository_Base {
   Auth_Repository({
     required String deepLinkBaseUri,
+    required OauthConfiguration oauthConfiguration,
     required Mixpanel_EffectProvider mixpanelEffectProvider,
     required Sentry_ClientProvider sentryClientProvider,
     required SupabaseClient supabaseClient,
   })  : _deepLinkBaseUri = deepLinkBaseUri,
+        _oauthConfiguration = oauthConfiguration,
         _mixpanelEffectProvider = mixpanelEffectProvider,
         _sentryClientProvider = sentryClientProvider,
         _supabaseClient = supabaseClient;
 
   final String _deepLinkBaseUri;
+  final OauthConfiguration _oauthConfiguration;
   final Mixpanel_EffectProvider _mixpanelEffectProvider;
   final Sentry_ClientProvider _sentryClientProvider;
   final SupabaseClient _supabaseClient;
@@ -56,6 +63,22 @@ class Auth_Repository extends Repository_Base {
     log.info('signOut');
 
     await _supabaseClient.auth.signOut();
+  }
+
+  Future<void> signInWithGoogle() async {
+    final googleUser = await GoogleSignIn(
+      clientId: Platform.isIOS
+          ? _oauthConfiguration.iosClientId
+          : _oauthConfiguration.androidClientId,
+      serverClientId: _oauthConfiguration.webClientId,
+    ).signIn();
+    final googleAuth = await googleUser!.authentication;
+
+    await _supabaseClient.auth.signInWithIdToken(
+      provider: OAuthProvider.google,
+      idToken: googleAuth.idToken!,
+      accessToken: googleAuth.accessToken,
+    );
   }
 
   Future<void> signUp({

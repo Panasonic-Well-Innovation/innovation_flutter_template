@@ -9,6 +9,7 @@ import 'button_submit.dart';
 import 'input_email.dart';
 import 'input_password.dart';
 import 'link_forgot_password.dart';
+import 'social_sign_in_column.dart';
 
 class SignIn_Form_SignIn extends StatefulWidget with SharedMixin_Logging {
   const SignIn_Form_SignIn({super.key});
@@ -87,6 +88,7 @@ class _SignIn_Form_SignInState extends State<SignIn_Form_SignIn> {
           const SignIn_Link_ForgotPassword(),
           SizedBox(height: context.tokens.spacing.medium),
           SignIn_Button_Submit(onSubmit: _onSubmit),
+          const SignIn_Column_SocialSignIn(),
           SizedBox(height: context.tokens.spacing.medium),
         ],
       ),
