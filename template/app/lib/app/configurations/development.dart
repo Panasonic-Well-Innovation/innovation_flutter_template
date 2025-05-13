@@ -10,6 +10,9 @@ import 'configuration.dart';
 
 void main() {
   const siteHost = String.fromEnvironment('SITE_HOST');
+  const googleWebClientId = String.fromEnvironment('GOOGLE_WEB_CLIENT_ID');
+  const iosClientId = String.fromEnvironment('GOOGLE_IOS_CLIENT_ID');
+  const androidClientId = String.fromEnvironment('GOOGLE_ANDROID_CLIENT_ID');
 
   final configuration = AppConfiguration(
     appLocale: AppLocale.en,
@@ -18,12 +21,17 @@ void main() {
     deepLinkBaseUri: kIsWeb
         ? 'http://$siteHost:3000'
         : 'com.gadfly361.gadflyfluttertemplate.deep://deeplink-callback',
+    oauthConfiguration: OauthConfiguration(
+      iosClientId: iosClientId,
+      webClientId: googleWebClientId,
+      androidClientId: androidClientId,
+    ),
     clientProvidersConfigurations: ClientProvidersConfigurations(
       sentry: null,
       supabase: const Supabase_ClientProvider_Configuration(
         url: 'http://$siteHost:54321',
         anonKey:
-            '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0''',
+            '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtib3h3anJqdHFrc3BudnR1dWVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzAyMjQyNTMsImV4cCI6MjA0NTgwMDI1M30.7Cb71Zo9OQeoiWoVH6_oom-IoZUbdOEUkT5TMV4md0s''',
       ),
     ),
     effectProvidersConfigurations: EffectProvidersConfigurations(

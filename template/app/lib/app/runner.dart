@@ -68,6 +68,7 @@ Future<void> appRunner({
   final repositories = Repositories_All(
     authRepository: Auth_Repository(
       deepLinkBaseUri: configuration.deepLinkBaseUri,
+      oauthConfiguration: configuration.oauthConfiguration,
       mixpanelEffectProvider: effectProviders.mixpanelEffectProvider,
       sentryClientProvider: clientProviders.sentryClientProvider,
       supabaseClient: clientProviders.supabaseClientProvider.client,

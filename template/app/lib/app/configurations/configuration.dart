@@ -14,6 +14,7 @@ class AppConfiguration {
     required this.deepLinkBaseUri,
     required this.clientProvidersConfigurations,
     required this.effectProvidersConfigurations,
+    required this.oauthConfiguration,
   });
 
   final AppLocale appLocale;
@@ -23,6 +24,7 @@ class AppConfiguration {
 
   final ClientProvidersConfigurations clientProvidersConfigurations;
   final EffectProvidersConfigurations effectProvidersConfigurations;
+  final OauthConfiguration oauthConfiguration;
 }
 
 class ClientProvidersConfigurations {
@@ -41,4 +43,18 @@ class EffectProvidersConfigurations {
   });
 
   final Mixpanel_EffectProvider_Configuration mixpanel;
+}
+
+class OauthConfiguration {
+  OauthConfiguration({
+    required this.iosClientId,
+    required this.webClientId,
+    required this.androidClientId,
+  });
+
+  final String iosClientId;
+  final String androidClientId;
+
+  /// The web client ID for the app
+  final String webClientId;
 }

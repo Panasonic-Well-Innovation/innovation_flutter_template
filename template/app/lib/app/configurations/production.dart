@@ -19,6 +19,11 @@ void main() {
     deepLinkBaseUri: kIsWeb
         ? 'CHANGE_ME'
         : 'com.gadfly361.gadflyfluttertemplate.deep://deeplink-callback',
+    oauthConfiguration: OauthConfiguration(
+      iosClientId: 'CHANGE_ME',
+      webClientId: 'CHANGE_ME',
+      androidClientId: 'CHANGE_ME',
+    ),
     clientProvidersConfigurations: ClientProvidersConfigurations(
       sentry: const Sentry_ClientProvider_Configuration(
         dsn: 'CHANGE_ME',
