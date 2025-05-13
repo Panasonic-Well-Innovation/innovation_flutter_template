@@ -19,7 +19,13 @@
         "3000",
         "--web-hostname=${env:SITE_HOST}",
         "--dart-define",
-        "SITE_HOST=${env:SITE_HOST}"
+        "SITE_HOST=${env:SITE_HOST}",
+        "--dart-define",
+        "GOOGLE_WEB_CLIENT_ID=${env:GOOGLE_WEB_CLIENT_ID}",
+        "--dart-define",
+        "GOOGLE_IOS_CLIENT_ID=${env:GOOGLE_IOS_CLIENT_ID}",
+        "--dart-define",
+        "GOOGLE_ANDROID_CLIENT_ID=${env:GOOGLE_ANDROID_CLIENT_ID}"
       ]
     },
     {
@@ -37,7 +43,13 @@
         "3000",
         "--web-hostname=${env:SITE_HOST}",
         "--dart-define",
-        "SITE_HOST=${env:SITE_HOST}"
+        "SITE_HOST=${env:SITE_HOST}",
+        "--dart-define",
+        "GOOGLE_WEB_CLIENT_ID=${env:GOOGLE_WEB_CLIENT_ID}",
+        "--dart-define",
+        "GOOGLE_IOS_CLIENT_ID=${env:GOOGLE_IOS_CLIENT_ID}",
+        "--dart-define",
+        "GOOGLE_ANDROID_CLIENT_ID=${env:GOOGLE_ANDROID_CLIENT_ID}"
       ]
     },
     {
@@ -65,7 +77,7 @@
         "--update-goldens",
         "--dart-define",
         "createScreenshots=true"
-      ],
+      ]
     }
   ]
 }
