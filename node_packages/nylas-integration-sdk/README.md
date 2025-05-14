@@ -18,6 +18,7 @@ API.
 ## 📚 Table of Contents
 
 - [Installation](#installation)
+- [Build + Publish Nylas SDK](#build--publish-nylas-sdk)
 - [Prerequisites](#prerequisites)
 - [Quick Start](#quick-start)
 - [Authentication Flow](#authentication-flow)
@@ -29,9 +30,60 @@ API.
 
 ## 📦 Installation
 
+To use the Nylas SDK in your project, you can install it directly from the
+GitHub repository:
+
 ```bash
-npm install nylas-integration-sdk@github:Panasonic-Well-Innovation/innovation_flutter_template#main/node_packages/nylas-integration-sdk
+npm i https://raw.githubusercontent.com/Panasonic-Well-Innovation/innovation_flutter_template/main/node_packages/nylas-integration-sdk/nylas-integration-sdk-0.1.0.tgz
 ```
+
+## 🔨 Re-build + Re-publish Nylas SDK
+
+If you've made changes to the SDK source code, follow these steps to rebuild and
+publish a new package:
+
+1. Navigate to the SDK directory:
+   ```bash
+   cd node_packages/nylas-integration-sdk
+   ```
+
+2. Install dependencies (if not already done):
+   ```bash
+   npm install
+   ```
+
+3. Make your code changes
+
+4. Update the version in package.json:
+   ```bash
+   # Use npm version to update the version number
+   npm version patch # for bug fixes
+   npm version minor # for new features
+   npm version major # for breaking changes
+   ```
+
+5. Build the package:
+   ```bash
+   npm run build
+   ```
+
+6. Create the package tarball:
+   ```bash
+   npm pack
+   ```
+   This will create a file named `nylas-integration-sdk-x.x.x.tgz` in the
+   current directory.
+
+7. Update the repository:
+   - Commit your changes to the repository
+   - Push the new package to the main branch
+   - Update any installation instructions to point to the new version
+
+8. To use the new version in other projects, update the installation path with
+   the new version number:
+   ```bash
+   npm i https://raw.githubusercontent.com/Panasonic-Well-Innovation/innovation_flutter_template/main/node_packages/nylas-integration-sdk/nylas-integration-sdk-x.x.x.tgz
+   ```
 
 ## 📋 Prerequisites
 
