@@ -17,16 +17,16 @@ API.
 
 ## 📚 Table of Contents
 
-- [Installation](#installation)
-- [Build + Publish Nylas SDK](#build--publish-nylas-sdk)
-- [Prerequisites](#prerequisites)
-- [Quick Start](#quick-start)
-- [Authentication Flow](#authentication-flow)
-- [Calendar Operations](#calendar-operations)
-- [Event Management](#event-management)
-- [Demo Application](#demo-application-setup)
-- [Database Connection & Compatibility](#database-connection-and-compatibility)
-- [Troubleshooting](#troubleshooting)
+- [Installation](#-installation)
+- [Re-build + Re-publish Nylas SDK](#-re-build--re-publish-nylas-sdk)
+- [Prerequisites](#-prerequisites)
+- [Quick Start](#-quick-start)
+- [Authentication Flow](#-authentication-flow)
+- [Calendar Operations](#-calendar-operations)
+- [Event Management](#-event-management)
+- [Demo Application Setup](#-demo-application-setup)
+- [Database Connection & Compatibility](#-database-connection--compatibility)
+- [Troubleshooting](#-troubleshooting)
 
 ## 📦 Installation
 
@@ -96,7 +96,7 @@ Before using this module, you need to:
 4. Configure a **Redirect URI** in your Nylas application settings (e.g.,
    `http://localhost:3001/api/nylas/callback`)
 
-## Quick Start
+## ⚡ Quick Start
 
 ```typescript
 import { NylasAuth, NylasCalendarClient } from "nylas-integration-sdk";
@@ -136,7 +136,7 @@ const handleCallback = async (code) => {
 };
 ```
 
-## Authentication Flow
+## 🔐 Authentication Flow
 
 The authentication flow follows the standard OAuth pattern:
 
@@ -173,7 +173,7 @@ router.get("/callback", async (req, res) => {
 });
 ```
 
-## Calendar Operations
+## 📅 Calendar Operations
 
 Once you have user credentials, you can access their calendars:
 
@@ -189,7 +189,7 @@ const primaryCalendar = await calendarClient.getPrimaryCalendar();
 console.log(`Primary calendar: ${primaryCalendar.name}`);
 ```
 
-## Event Management
+## 📆 Event Management
 
 ### Reading Events
 
@@ -257,7 +257,7 @@ if (conflicts.hasConflict) {
 }
 ```
 
-## Demo Application Setup
+## 🚀 Demo Application Setup
 
 This repository includes a complete working demo that showcases the SDK's
 capabilities.
@@ -373,7 +373,7 @@ The demo shows the simplest way to use the module, and optionally connects to a
 database for persistence when provided a connection string. See the
 `examples/nylas-demo` directory for the complete implementation.
 
-## Database Connection & Compatibility
+## 💾 Database Connection & Compatibility
 
 The module includes robust database connection handling, with special
 optimizations for IPv6 networks and cloud providers like Supabase.
