@@ -1,10 +1,13 @@
 # Checklist
 
-If you just created a project from the [gadfly_flutter_template](https://github.com/gadfly361/gadfly_flutter_template), then you still have a few manual things to do before the project is ready.
+If you just created a project from the
+[gadfly_flutter_template](https://github.com/gadfly361/gadfly_flutter_template),
+then you still have a few manual things to do before the project is ready.
 
 ## Step 0: Make sure your computer's setup is ready for development
 
-See [docs/developer_setup/prerequisites.md](http://localhost:8000/developer_setup/prerequisites.html).
+See
+[docs/developer_setup/prerequisites.md](http://localhost:8000/developer_setup/prerequisites.html).
 
 ## Step 1: Update production supabase
 
@@ -16,11 +19,14 @@ Go to [Supabase.com](https://supabase.com) and create a new project.
 
 ### Update your site_url and redirect_urls
 
-If you only have a mobile application, then you can change your site URL to be a deep link to your application like this:
+If you only have a mobile application, then you can change your site URL to be a
+deep link to your application like this:
 
 ![Supabase site url](images/supabase_site_url.png?raw=true)
 
-If you have an application and a website, then you'd want your site url to be your website, and then add the deep link to your application as an additional redirect url.
+If you have an application and a website, then you'd want your site url to be
+your website, and then add the deep link to your application as an additional
+redirect url.
 
 ### Link your local supabase project with your production account
 
@@ -40,8 +46,8 @@ supabase link
 
 ## Step 2: Update your app's configuration file
 
-Go to `app/lib/configurations/*.dart` and replace all the `CHANGE_ME` texts
-with your credentials.
+Go to `app/lib/configurations/*.dart` and replace all the `CHANGE_ME` texts with
+your credentials.
 
 For the **production** build use these:
 
@@ -57,7 +63,8 @@ For the **production** build use these:
 
 ### SMTP Server Credentials
 
-You will need to set up an SMTP server with supabase. For example, you can use [mailersend](https://mailersend.com).
+You will need to set up an SMTP server with supabase. For example, you can use
+[mailersend](https://mailersend.com).
 
 ![MailerSend SMTP](images/mailersend.png?raw=true)
 
@@ -151,15 +158,17 @@ enable_confirmations = true
 
 ### Deep links cleanup
 
-Finally, do a search and replace for `com.gadfly361.gadflyfluttertemplate.deep"` and replace it
-with the name of your project. For example `com.my-company.my-application-name.deep` (in
-kebab-case).
+Finally, do a search and replace for `com.gadfly361.gadflyfluttertemplate.deep"`
+and replace it with the name of your project. For example
+`com.my-company.my-application-name.deep` (in kebab-case).
 
-*Note: make sure to exclude the `docs/` directory in your search and replace. Otherwise it will update this file as well.
+*Note: make sure to exclude the `docs/` directory in your search and replace.
+Otherwise it will update this file as well.
 
 ### Add your local ip address to `.env` file and source from `.envrc`
 
-Create a `.env` file and add the following to `.env`, but replace the ip address with your own:
+Create a `.env` file and add the following to `.env`, but replace the ip address
+with your own:
 
 ```env
 # Used in `.vscode/launch.json `
@@ -173,6 +182,34 @@ export SITE_URL_HTTPS="https://$SITE_HOST:3000"
 export EDGE_FUNCTION_SECRET="my-edge-function-secret" # needs to match `supabase/seed.sql`
 ```
 
-**Note**: The reason we have both a `.env` file and `.envrc` file is because supabase's `config.toml` file expects environment variables in `.env`, while direnv expects environment variables in `.envrc`. So we have decided to define our environment variables in `.env` and source them from `.envrc`. As a consequence, we are only ignoring `.env` from version control.
+**Note**: The reason we have both a `.env` file and `.envrc` file is because
+supabase's `config.toml` file expects environment variables in `.env`, while
+direnv expects environment variables in `.envrc`. So we have decided to define
+our environment variables in `.env` and source them from `.envrc`. As a
+consequence, we are only ignoring `.env` from version control.
 
-_Reminder, be sure to download the [VSCode direnv extension](https://marketplace.visualstudio.com/items?itemName=mkhl.direnv)._
+_Reminder, be sure to download the
+[VSCode direnv extension](https://marketplace.visualstudio.com/items?itemName=mkhl.direnv)._
+
+## Step 7: Configure Firebase with FlutterFire
+
+Before running the FlutterFire CLI, you need to install it globally. Run the
+following command:
+
+```sh
+dart pub global activate flutterfire_cli
+```
+
+Then, set up Firebase for your Flutter project by running:
+
+```sh
+cd app
+flutterfire configure
+```
+
+Follow the interactive instructions to select your Firebase project and
+platforms. This will create or update the `firebase_options.dart` file and any
+required native configuration files.
+
+For more details, see the
+[FlutterFire documentation](https://firebase.flutter.dev/docs/cli/).

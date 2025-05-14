@@ -1,20 +1,25 @@
 // coverage:ignore-file
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:uuid/uuid.dart';
 
+import '../firebase_options.dart';
 import '../inside/blocs/observer.dart';
 import '../outside/client_providers/all.dart';
+import '../outside/client_providers/firebase_messaging/client_provider.dart';
 import '../outside/client_providers/sentry/client_provider.dart';
 import '../outside/client_providers/supabase/client_provider.dart';
 import '../outside/effect_providers/all.dart';
 import '../outside/effect_providers/auth_change/effect_provider.dart';
+import '../outside/effect_providers/firebase_messaging/effect_provider.dart';
 import '../outside/effect_providers/mixpanel/effect_provider.dart';
 import '../outside/repositories/all.dart';
 import '../outside/repositories/auth/repository.dart';
+import '../outside/repositories/notifications/repository.dart';
 import 'builder.dart';
 import 'configurations/configuration.dart';
 
@@ -31,6 +36,7 @@ Future<void> appRunner({
   final log = Logger('app_runner');
 
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // If flutter error, log severe
   FlutterError.onError = (details) {
@@ -49,6 +55,7 @@ Future<void> appRunner({
     supabaseClientProvider: Supabase_ClientProvider(
       configuration: configuration.clientProvidersConfigurations.supabase,
     ),
+    firebaseMessagingProvider: FirebaseMessaging_ClientProvider(),
   );
   await clientProviders.initialize();
 
@@ -61,11 +68,17 @@ Future<void> appRunner({
       initialSessionId: initialSessionId,
       configuration: configuration.effectProvidersConfigurations.mixpanel,
     ),
+    firebaseMessagingEffectProvider: FirebaseMessaging_EffectProvider(
+      firebaseMessaging: clientProviders.firebaseMessagingProvider.client,
+    ),
   );
   await effectProviders.initialize();
 
   // Create and initialize repositories
   final repositories = Repositories_All(
+    notificationsRepository: Notifications_Repository(
+      supabaseClient: clientProviders.supabaseClientProvider.client,
+    ),
     authRepository: Auth_Repository(
       deepLinkBaseUri: configuration.deepLinkBaseUri,
       oauthConfiguration: configuration.oauthConfiguration,
@@ -92,6 +105,8 @@ Future<void> appRunner({
       log.warning(e);
     }
   }
+
+  await clientProviders.firebaseMessagingProvider.client.requestPermission();
 
   final app = SentryWidget(
     child: DefaultAssetBundle(

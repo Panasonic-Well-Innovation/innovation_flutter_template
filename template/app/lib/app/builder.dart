@@ -12,6 +12,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../inside/blocs/auth/bloc.dart';
 import '../inside/blocs/auth/state.dart';
+import '../inside/cubits/notifications/cubit.dart';
 import '../inside/i18n/translations.g.dart';
 import '../inside/routes/deep_link_handler.dart';
 import '../inside/routes/router.dart';
@@ -70,6 +71,12 @@ Future<Widget> appBuilder({
     foruiThemeData: theme.foruiThemeData,
   );
 
+  final notificationsCubit = Notifications_Cubit(
+    firebaseMessagingEffectProvider:
+        effectProviders.firebaseMessagingEffectProvider,
+    notificationsRepository: repositories.notificationsRepository,
+  );
+
   return TranslationProvider(
     child: App(
       key: key,
@@ -77,6 +84,7 @@ Future<Widget> appBuilder({
       deepLinkHandler: deepLinkHandler,
       theme: theme,
       authBloc: authBloc,
+      notificationsCubit: notificationsCubit,
       router: router,
       effectProviders: effectProviders,
       repositories: repositories,
@@ -90,6 +98,7 @@ class App extends StatelessWidget {
     required this.deepLinkHandler,
     required this.theme,
     required this.authBloc,
+    required this.notificationsCubit,
     required this.router,
     required this.effectProviders,
     required this.repositories,
@@ -100,6 +109,7 @@ class App extends StatelessWidget {
   final Routes_DeepLinkHandler deepLinkHandler;
   final OutsideTheme theme;
   final Auth_Bloc authBloc;
+  final Notifications_Cubit notificationsCubit;
   final EffectProviders_All effectProviders;
   final Repositories_All repositories;
 
@@ -115,6 +125,7 @@ class App extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider.value(value: authBloc),
+          BlocProvider.value(value: notificationsCubit),
         ],
         child: MaterialApp.router(
           theme: theme.materialThemeData,

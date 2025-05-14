@@ -55,11 +55,15 @@ class MockedApp extends FTMockedApp<MocksContainer> {
 }
 
 class MocksContainer {
-  final repositories = Repositories_All(authRepository: MockAuthRepository());
+  final repositories = Repositories_All(
+    authRepository: MockAuthRepository(),
+    notificationsRepository: MockNotificationsRepository(),
+  );
 
   final effectProviders = EffectProviders_All(
     authChangeEffectProvider: MockAuthChangeEffectProvider(),
     mixpanelEffectProvider: MockMixpanelEffectProvider(),
+    firebaseMessagingEffectProvider: MockFirebaseMessaging_EffectProvider(),
   );
 
   final effects = AllMockedEffects(

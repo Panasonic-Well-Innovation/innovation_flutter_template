@@ -85,7 +85,7 @@ class Home_Route extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return WrappedRoute(child: const Home_Page());
+      return const Home_Page();
     },
   );
 }
