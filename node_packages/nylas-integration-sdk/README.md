@@ -34,7 +34,7 @@ To use the Nylas SDK in your project, you can install it directly from the
 GitHub repository:
 
 ```bash
-npm i https://raw.githubusercontent.com/Panasonic-Well-Innovation/innovation_flutter_template/main/node_packages/nylas-integration-sdk/nylas-integration-sdk-0.1.0.tgz
+npm i https://raw.githubusercontent.com/Panasonic-Well-Innovation/innovation_flutter_template/main/node_packages/nylas-integration-sdk/nylas-integration-sdk-1.0.0.tgz
 ```
 
 ## 🔨 Re-build + Re-publish Nylas SDK
