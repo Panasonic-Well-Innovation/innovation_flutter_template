@@ -1,0 +1,226 @@
+{
+  "project_info": {
+    "project_number": "675316094808",
+    "project_id": "compass-b9364",
+    "storage_bucket": "compass-b9364.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675316094808:android:0a804cba6a65522097772d",
+        "android_client_info": {
+          "package_name": "com.gadfly361.gadfly_flutter_template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675316094808-11ipffesmp6dt0km3bp04agfl1ik9svb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKoEKKN3nwsI3Ky2Bcua_fAXuzdZCbXuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675316094808-11ipffesmp6dt0km3bp04agfl1ik9svb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "675316094808-d24rhbsag5mdgjnp0acpd6djag5h37sf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gadfly361.gadflyfluttertemplate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675316094808:android:00c1dd89922e4cda97772d",
+        "android_client_info": {
+          "package_name": "com.panasonicwell.compass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675316094808-11ipffesmp6dt0km3bp04agfl1ik9svb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKoEKKN3nwsI3Ky2Bcua_fAXuzdZCbXuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675316094808-11ipffesmp6dt0km3bp04agfl1ik9svb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "675316094808-d24rhbsag5mdgjnp0acpd6djag5h37sf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gadfly361.gadflyfluttertemplate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675316094808:android:2ed6730d41b15c2b97772d",
+        "android_client_info": {
+          "package_name": "com.panasonicwell.compass.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675316094808-11ipffesmp6dt0km3bp04agfl1ik9svb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKoEKKN3nwsI3Ky2Bcua_fAXuzdZCbXuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675316094808-11ipffesmp6dt0km3bp04agfl1ik9svb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "675316094808-d24rhbsag5mdgjnp0acpd6djag5h37sf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gadfly361.gadflyfluttertemplate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675316094808:android:d89ba6b278f4573d97772d",
+        "android_client_info": {
+          "package_name": "com.panasonicwell.compass.dogfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675316094808-11ipffesmp6dt0km3bp04agfl1ik9svb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKoEKKN3nwsI3Ky2Bcua_fAXuzdZCbXuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675316094808-11ipffesmp6dt0km3bp04agfl1ik9svb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "675316094808-d24rhbsag5mdgjnp0acpd6djag5h37sf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gadfly361.gadflyfluttertemplate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675316094808:android:f068edaa4912b08c97772d",
+        "android_client_info": {
+          "package_name": "com.panasonicwell.compass.pilot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675316094808-11ipffesmp6dt0km3bp04agfl1ik9svb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKoEKKN3nwsI3Ky2Bcua_fAXuzdZCbXuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675316094808-11ipffesmp6dt0km3bp04agfl1ik9svb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "675316094808-d24rhbsag5mdgjnp0acpd6djag5h37sf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gadfly361.gadflyfluttertemplate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675316094808:android:0cf661e25fc0b60197772d",
+        "android_client_info": {
+          "package_name": "com.panasonicwell.compass.staging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675316094808-11ipffesmp6dt0km3bp04agfl1ik9svb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKoEKKN3nwsI3Ky2Bcua_fAXuzdZCbXuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675316094808-11ipffesmp6dt0km3bp04agfl1ik9svb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "675316094808-d24rhbsag5mdgjnp0acpd6djag5h37sf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gadfly361.gadflyfluttertemplate"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
