@@ -1,0 +1,41 @@
+{
+  "name": "nylas-integration-sdk",
+  "version": "1.0.0",
+  "description": "A reusable Nylas integration SDK for calendar and email functionality",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint --ext .ts src/",
+    "prepare": "npm run build",
+    "test-adapters": "ts-node examples/test-db-adapters.ts",
+    "test-postgres": "ts-node examples/test-postgres-adapter.ts",
+    "rebuild-and-test": "npm run build && npm run test-adapters"
+  },
+  "keywords": [
+    "nylas",
+    "calendar",
+    "email",
+    "integration"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "nylas": "^7.9.0",
+    "postgres": "^3.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.25",
+    "@types/pg": "^8.15.1",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint": "^8.57.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  },
+  "files": [
+    "dist"
+  ]
+}
