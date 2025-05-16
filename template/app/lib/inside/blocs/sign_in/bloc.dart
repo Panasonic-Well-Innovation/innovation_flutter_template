@@ -65,6 +65,7 @@ class SignIn_Bloc extends Bloc_Base<SignIn_Event, SignIn_State> {
         case ModelEnum_SocialSignInProvider.google:
           await _authRepository.signInWithGoogle();
         case ModelEnum_SocialSignInProvider.apple:
+          await _authRepository.signInWithApple();
         case ModelEnum_SocialSignInProvider.facebook:
           throw Exception('Not implemented');
       }

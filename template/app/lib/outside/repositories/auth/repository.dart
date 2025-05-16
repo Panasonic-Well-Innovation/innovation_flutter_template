@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:crypto/crypto.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../app/configurations/configuration.dart';
@@ -78,6 +81,29 @@ class Auth_Repository extends Repository_Base {
       provider: OAuthProvider.google,
       idToken: googleAuth.idToken!,
       accessToken: googleAuth.accessToken,
+    );
+  }
+
+  Future<void> signInWithApple() async {
+    final rawNonce = _supabaseClient.auth.generateRawNonce();
+    final hashedNonce = sha256.convert(utf8.encode(rawNonce)).toString();
+    final credential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      nonce: hashedNonce,
+    );
+    final idToken = credential.identityToken;
+    if (idToken == null) {
+      throw const AuthException(
+        'Could not find ID Token from generated credential.',
+      );
+    }
+    await _supabaseClient.auth.signInWithIdToken(
+      provider: OAuthProvider.apple,
+      idToken: idToken,
+      nonce: rawNonce,
     );
   }
 
