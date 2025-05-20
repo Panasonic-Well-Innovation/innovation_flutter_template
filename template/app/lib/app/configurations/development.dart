@@ -13,18 +13,21 @@ void main() {
   const googleWebClientId = String.fromEnvironment('GOOGLE_WEB_CLIENT_ID');
   const iosClientId = String.fromEnvironment('GOOGLE_IOS_CLIENT_ID');
   const androidClientId = String.fromEnvironment('GOOGLE_ANDROID_CLIENT_ID');
+  const appleServiceId = String.fromEnvironment('APPLE_SERVICE_ID');
 
   final configuration = AppConfiguration(
     appLocale: AppLocale.en,
     logLevel: logging.Level.ALL,
     theme: OutsideThemes.lightTheme,
-    deepLinkBaseUri: kIsWeb
-        ? 'http://$siteHost:3000'
-        : 'com.gadfly361.gadflyfluttertemplate.deep://deeplink-callback',
+    deepLinkBaseUri:
+        kIsWeb
+            ? 'http://$siteHost:3000'
+            : 'com.gadfly361.gadflyfluttertemplate.deep://deeplink-callback',
     oauthConfiguration: OauthConfiguration(
       iosClientId: iosClientId,
       webClientId: googleWebClientId,
       androidClientId: androidClientId,
+      appleServiceId: appleServiceId,
     ),
     clientProvidersConfigurations: ClientProvidersConfigurations(
       sentry: null,

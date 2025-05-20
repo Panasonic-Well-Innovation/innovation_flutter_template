@@ -38,6 +38,13 @@ target 'Runner' do
 end
 
 post_install do |installer|
+  # Add this code to enable Sign in with Apple
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['CODE_SIGN_ENTITLEMENTS'] = '${PODS_ROOT}/../Runner/Runner.entitlements'
+    end
+  end
+
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
   end

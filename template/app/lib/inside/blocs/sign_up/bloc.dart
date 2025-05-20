@@ -8,19 +8,12 @@ import 'events.dart';
 import 'state.dart';
 
 class SignUp_Bloc extends Bloc_Base<SignUp_Event, SignUp_State> {
-  SignUp_Bloc({
-    required Auth_Repository authRepository,
-  })  : _authRepository = authRepository,
-        super(
-          const SignUp_State(
-            status: SignUp_Status.idle,
-            errorMessage: null,
-          ),
-        ) {
-    on<SignUp_Event_SignUp>(
-      _onSignUp,
-      transformer: sequential(),
-    );
+  SignUp_Bloc({required Auth_Repository authRepository})
+    : _authRepository = authRepository,
+      super(
+        const SignUp_State(status: SignUp_Status.idle, errorMessage: null),
+      ) {
+    on<SignUp_Event_SignUp>(_onSignUp, transformer: sequential());
     on<SignUp_Event_ResendEmailVerificationLink>(
       _onResendEmailVerificationLink,
       transformer: sequential(),
@@ -54,10 +47,7 @@ class SignUp_Bloc extends Bloc_Base<SignUp_Event, SignUp_State> {
       );
     } finally {
       emit(
-        state.copyWith(
-          status: SignUp_Status.idle,
-          setErrorMessage: () => null,
-        ),
+        state.copyWith(status: SignUp_Status.idle, setErrorMessage: () => null),
       );
     }
   }
@@ -90,10 +80,7 @@ class SignUp_Bloc extends Bloc_Base<SignUp_Event, SignUp_State> {
       );
     } finally {
       emit(
-        state.copyWith(
-          status: SignUp_Status.idle,
-          setErrorMessage: () => null,
-        ),
+        state.copyWith(status: SignUp_Status.idle, setErrorMessage: () => null),
       );
     }
   }
@@ -108,11 +95,12 @@ class SignUp_Bloc extends Bloc_Base<SignUp_Event, SignUp_State> {
         case ModelEnum_SocialSignInProvider.google:
           await _authRepository.signInWithGoogle();
         case ModelEnum_SocialSignInProvider.apple:
+          await _authRepository.signInWithApple();
         case ModelEnum_SocialSignInProvider.facebook:
           throw Exception('Not implemented');
       }
 
-      emit(state.copyWith(status: SignUp_Status.signUpError));
+      emit(state.copyWith(status: SignUp_Status.signUpSuccess));
     } catch (e, stackTrace) {
       log.warning('_onSignInWithSocial: error', e, stackTrace);
       emit(
@@ -123,10 +111,7 @@ class SignUp_Bloc extends Bloc_Base<SignUp_Event, SignUp_State> {
       );
     } finally {
       emit(
-        state.copyWith(
-          status: SignUp_Status.idle,
-          setErrorMessage: () => null,
-        ),
+        state.copyWith(status: SignUp_Status.idle, setErrorMessage: () => null),
       );
     }
   }

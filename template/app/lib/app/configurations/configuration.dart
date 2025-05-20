@@ -28,19 +28,14 @@ class AppConfiguration {
 }
 
 class ClientProvidersConfigurations {
-  ClientProvidersConfigurations({
-    required this.sentry,
-    required this.supabase,
-  });
+  ClientProvidersConfigurations({required this.sentry, required this.supabase});
 
   final Sentry_ClientProvider_Configuration? sentry;
   final Supabase_ClientProvider_Configuration supabase;
 }
 
 class EffectProvidersConfigurations {
-  EffectProvidersConfigurations({
-    required this.mixpanel,
-  });
+  EffectProvidersConfigurations({required this.mixpanel});
 
   final Mixpanel_EffectProvider_Configuration mixpanel;
 }
@@ -50,10 +45,13 @@ class OauthConfiguration {
     required this.iosClientId,
     required this.webClientId,
     required this.androidClientId,
+    required this.appleServiceId,
   });
 
   final String iosClientId;
   final String androidClientId;
+
+  final String appleServiceId;
 
   /// The web client ID for the app
   final String webClientId;

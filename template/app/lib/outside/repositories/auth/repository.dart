@@ -18,11 +18,11 @@ class Auth_Repository extends Repository_Base {
     required Mixpanel_EffectProvider mixpanelEffectProvider,
     required Sentry_ClientProvider sentryClientProvider,
     required SupabaseClient supabaseClient,
-  })  : _deepLinkBaseUri = deepLinkBaseUri,
-        _oauthConfiguration = oauthConfiguration,
-        _mixpanelEffectProvider = mixpanelEffectProvider,
-        _sentryClientProvider = sentryClientProvider,
-        _supabaseClient = supabaseClient;
+  }) : _deepLinkBaseUri = deepLinkBaseUri,
+       _oauthConfiguration = oauthConfiguration,
+       _mixpanelEffectProvider = mixpanelEffectProvider,
+       _sentryClientProvider = sentryClientProvider,
+       _supabaseClient = supabaseClient;
 
   final String _deepLinkBaseUri;
   final OauthConfiguration _oauthConfiguration;
@@ -49,10 +49,7 @@ class Auth_Repository extends Repository_Base {
     return _supabaseClient.auth.currentUser;
   }
 
-  Future<void> signIn({
-    required String email,
-    required String password,
-  }) async {
+  Future<void> signIn({required String email, required String password}) async {
     log.info('signIn');
     log.fine('email: $email');
 
@@ -69,12 +66,14 @@ class Auth_Repository extends Repository_Base {
   }
 
   Future<void> signInWithGoogle() async {
-    final googleUser = await GoogleSignIn(
-      clientId: Platform.isIOS
-          ? _oauthConfiguration.iosClientId
-          : _oauthConfiguration.androidClientId,
-      serverClientId: _oauthConfiguration.webClientId,
-    ).signIn();
+    final googleUser =
+        await GoogleSignIn(
+          clientId:
+              Platform.isIOS
+                  ? _oauthConfiguration.iosClientId
+                  : _oauthConfiguration.androidClientId,
+          serverClientId: _oauthConfiguration.webClientId,
+        ).signIn();
     final googleAuth = await googleUser!.authentication;
 
     await _supabaseClient.auth.signInWithIdToken(
@@ -85,32 +84,39 @@ class Auth_Repository extends Repository_Base {
   }
 
   Future<void> signInWithApple() async {
-    final rawNonce = _supabaseClient.auth.generateRawNonce();
-    final hashedNonce = sha256.convert(utf8.encode(rawNonce)).toString();
-    final credential = await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-      nonce: hashedNonce,
-    );
-    final idToken = credential.identityToken;
-    if (idToken == null) {
-      throw const AuthException(
-        'Could not find ID Token from generated credential.',
+    log.info('signInWithApple');
+    try {
+      final rawNonce = _supabaseClient.auth.generateRawNonce();
+      final hashedNonce = sha256.convert(utf8.encode(rawNonce)).toString();
+
+      // For local testing, we need to use proper configuration
+      final credential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        nonce: hashedNonce,
       );
+
+      final idToken = credential.identityToken;
+      if (idToken == null) {
+        throw const AuthException(
+          'Could not find ID Token from generated credential.',
+        );
+      }
+
+      await _supabaseClient.auth.signInWithIdToken(
+        provider: OAuthProvider.apple,
+        idToken: idToken,
+        nonce: rawNonce,
+      );
+    } catch (e) {
+      log.warning('Sign in with Apple error: $e');
+      rethrow;
     }
-    await _supabaseClient.auth.signInWithIdToken(
-      provider: OAuthProvider.apple,
-      idToken: idToken,
-      nonce: rawNonce,
-    );
   }
 
-  Future<void> signUp({
-    required String email,
-    required String password,
-  }) async {
+  Future<void> signUp({required String email, required String password}) async {
     log.info('signUp');
     log.fine('email: $email');
     log.fine('redirectTo: $_signUpRedirectUrl');
@@ -122,9 +128,7 @@ class Auth_Repository extends Repository_Base {
     );
   }
 
-  Future<void> sendResetPasswordLink({
-    required String email,
-  }) async {
+  Future<void> sendResetPasswordLink({required String email}) async {
     log.info('sendResetPasswordLink');
     log.fine('redirectTo: $_resetPasswordRedirectUrl');
 
@@ -134,16 +138,10 @@ class Auth_Repository extends Repository_Base {
     );
   }
 
-  Future<void> resetPassword({
-    required String password,
-  }) async {
+  Future<void> resetPassword({required String password}) async {
     log.info('resetPassword');
 
-    await _supabaseClient.auth.updateUser(
-      UserAttributes(
-        password: password,
-      ),
-    );
+    await _supabaseClient.auth.updateUser(UserAttributes(password: password));
   }
 
   Future<String> getAccessTokenFromUri({
@@ -169,9 +167,7 @@ class Auth_Repository extends Repository_Base {
     return response.session.accessToken;
   }
 
-  Future<void> resendEmailVerificationLink({
-    required String email,
-  }) async {
+  Future<void> resendEmailVerificationLink({required String email}) async {
     log.info('resendEmailVerificationLink');
     log.fine('redirectTo: $_signUpRedirectUrl');
 

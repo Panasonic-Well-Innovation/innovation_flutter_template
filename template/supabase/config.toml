@@ -220,7 +220,6 @@ max_frequency = "5s"
 [auth.external.apple]
 enabled = true
 client_id = "env(SUPABASE_AUTH_EXTERNAL_APPLE_SERVICE_ID)"
-secret = "env(SUPABASE_AUTH_EXTERNAL_APPLE_SECRET)"
 
 
 [auth.external.google]
