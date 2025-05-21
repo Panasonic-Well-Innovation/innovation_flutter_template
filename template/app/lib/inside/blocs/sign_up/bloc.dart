@@ -102,7 +102,7 @@ class SignUp_Bloc extends Bloc_Base<SignUp_Event, SignUp_State> {
 
       emit(state.copyWith(status: SignUp_Status.signUpSuccess));
     } catch (e, stackTrace) {
-      log.warning('_onSignInWithSocial: error', e, stackTrace);
+      log.warning('_onSignUpWithSocial: error', e, stackTrace);
       emit(
         state.copyWith(
           status: SignUp_Status.signUpError,
